@@ -131,8 +131,8 @@ workspace "SOIL2"
 
 		filter "system:macosx"
 			links { "OpenGL.framework", "CoreFoundation.framework" }
-			buildoptions {"-F /Library/Frameworks", "-F ~/Library/Frameworks"}
-			linkoptions {"-F /Library/Frameworks", "-F ~/Library/Frameworks"}
+			buildoptions {"-F /Library/Frameworks", "-F /Library/Frameworks"}
+			linkoptions {"-F /Library/Frameworks", "-F /Library/Frameworks"}
 			defines { "GL_SILENCE_DEPRECATION" }
 
 		filter "system:haiku"
@@ -171,10 +171,10 @@ workspace "SOIL2"
 			links {"GL","SDL2"}
 
 		filter "system:macosx"
-			links { "OpenGL.framework", "CoreFoundation.framework", get_backend_link_name("SDL2") }
-			buildoptions {"-F /Library/Frameworks", "-F ~/Library/Frameworks"}
-			linkoptions {"-F /Library/Frameworks", "-F ~/Library/Frameworks"}
-			includedirs { "/Library/Frameworks/SDL2.framework/Headers" }
+			links { "OpenGL.framework", "CoreFoundation.framework", "SDL2" }
+			buildoptions {"-F /Library/Frameworks", "-I/usr/local/Homebrew/include", "-I/usr/local/Homebrew/include/SDL2" }
+			linkoptions {"-F /Library/Frameworks", "-L /usr/local/Homebrew/lib", "-lSDL2" }
+			includedirs { "/Library/Frameworks/SDL2.framework/Headers", "/usr/local/Homebrew/include", "/usr/local/Homebrew/include/SDL2" }
 			defines { "GL_SILENCE_DEPRECATION" }
 			if not _OPTIONS["use-frameworks"] then
 				defines { "SOIL2_NO_FRAMEWORKS" }
@@ -228,10 +228,10 @@ workspace "SOIL2"
 			links {"GL","SDL2"}
 
 		filter "system:macosx"
-			links { "OpenGL.framework", "CoreFoundation.framework", get_backend_link_name("SDL2") }
-			buildoptions {"-F /Library/Frameworks", "-F ~/Library/Frameworks"}
-			linkoptions {"-F /Library/Frameworks", "-F ~/Library/Frameworks"}
-			includedirs { "/Library/Frameworks/SDL2.framework/Headers" }
+			links { "OpenGL.framework", "CoreFoundation.framework", "SDL2" }
+			buildoptions {"-F /Library/Frameworks",  "-I/usr/local/Homebrew/include", "-I/usr/local/Homebrew/include/SDL2" }
+			linkoptions {"-F /Library/Frameworks", "-L /usr/local/Homebrew/lib", "-lSDL2"}
+			includedirs { "/Library/Frameworks/SDL2.framework/Headers", "/usr/local/Homebrew/include", "/usr/local/Homebrew/include/SDL2"  }
 			defines { "GL_SILENCE_DEPRECATION" }
 			if not _OPTIONS["use-frameworks"] then
 				defines { "SOIL2_NO_FRAMEWORKS" }
